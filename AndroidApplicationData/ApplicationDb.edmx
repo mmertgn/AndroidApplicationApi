@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="applicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Egzersiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="EgzersizTipi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sure" Type="float" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HbA1c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="HbA1c" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yorum" Type="nvarchar(max)" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="KanSekeri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Zaman" Type="nvarchar" MaxLength="50" />
+          <Property Name="KanSekeriDegeri" Type="int" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" />
+          <Property Name="DogumTarihi" Type="datetime" />
+          <Property Name="DiyabetTipi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeshisKonduguTarih" Type="datetime" />
+          <Property Name="il" Type="nvarchar" MaxLength="50" />
+          <Property Name="ilce" Type="nvarchar" MaxLength="50" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Su">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="GunlukToplamBardak" Type="int" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tansiyon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="BuyukTansiyon" Type="int" />
+          <Property Name="KucukTansiyon" Type="int" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VucutKitle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Boy" Type="int" />
+          <Property Name="Kilo" Type="int" />
+          <Property Name="VucutKitleIndexi" Type="float" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Egzersiz_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Egzersiz" Type="Self.Egzersiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Egzersiz">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HbA1c_Kullanicilar1">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="HbA1c" Type="Self.HbA1c" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HbA1c">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KanSekeri_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="KanSekeri" Type="Self.KanSekeri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KanSekeri">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Su_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Su" Type="Self.Su" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Su">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tansiyon_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Tansiyon" Type="Self.Tansiyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tansiyon">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VucutKitle_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="VucutKitle" Type="Self.VucutKitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VucutKitle">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="applicationModelStoreContainer">
+          <EntitySet Name="Egzersiz" EntityType="Self.Egzersiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HbA1c" EntityType="Self.HbA1c" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KanSekeri" EntityType="Self.KanSekeri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Su" EntityType="Self.Su" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tansiyon" EntityType="Self.Tansiyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VucutKitle" EntityType="Self.VucutKitle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Egzersiz_Kullanicilar" Association="Self.FK_Egzersiz_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Egzersiz" EntitySet="Egzersiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HbA1c_Kullanicilar1" Association="Self.FK_HbA1c_Kullanicilar1">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="HbA1c" EntitySet="HbA1c" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KanSekeri_Kullanicilar" Association="Self.FK_KanSekeri_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KanSekeri" EntitySet="KanSekeri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Su_Kullanicilar" Association="Self.FK_Su_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Su" EntitySet="Su" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tansiyon_Kullanicilar" Association="Self.FK_Tansiyon_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Tansiyon" EntitySet="Tansiyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VucutKitle_Kullanicilar" Association="Self.FK_VucutKitle_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="VucutKitle" EntitySet="VucutKitle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="applicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Egzersiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="EgzersizTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sure" Type="Double" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Egzersiz_Kullanicilar" FromRole="Egzersiz" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="HbA1c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="HbA1c1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_HbA1c_Kullanicilar1" FromRole="HbA1c" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="KanSekeri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Zaman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KanSekeriDegeri" Type="Int32" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_KanSekeri_Kullanicilar" FromRole="KanSekeri" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="DiyabetTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeshisKonduguTarih" Type="DateTime" Precision="3" />
+          <Property Name="il" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Egzersiz" Relationship="Self.FK_Egzersiz_Kullanicilar" FromRole="Kullanicilar" ToRole="Egzersiz" />
+          <NavigationProperty Name="HbA1c" Relationship="Self.FK_HbA1c_Kullanicilar1" FromRole="Kullanicilar" ToRole="HbA1c" />
+          <NavigationProperty Name="KanSekeri" Relationship="Self.FK_KanSekeri_Kullanicilar" FromRole="Kullanicilar" ToRole="KanSekeri" />
+          <NavigationProperty Name="Su" Relationship="Self.FK_Su_Kullanicilar" FromRole="Kullanicilar" ToRole="Su" />
+          <NavigationProperty Name="Tansiyon" Relationship="Self.FK_Tansiyon_Kullanicilar" FromRole="Kullanicilar" ToRole="Tansiyon" />
+          <NavigationProperty Name="VucutKitle" Relationship="Self.FK_VucutKitle_Kullanicilar" FromRole="Kullanicilar" ToRole="VucutKitle" />
+        </EntityType>
+        <EntityType Name="Su">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="GunlukToplamBardak" Type="Int32" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Su_Kullanicilar" FromRole="Su" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="Tansiyon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="BuyukTansiyon" Type="Int32" />
+          <Property Name="KucukTansiyon" Type="Int32" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Tansiyon_Kullanicilar" FromRole="Tansiyon" ToRole="Kullanicilar" />
+        </EntityType>
+        <EntityType Name="VucutKitle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Boy" Type="Int32" />
+          <Property Name="Kilo" Type="Int32" />
+          <Property Name="VucutKitleIndexi" Type="Double" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_VucutKitle_Kullanicilar" FromRole="VucutKitle" ToRole="Kullanicilar" />
+        </EntityType>
+        <Association Name="FK_Egzersiz_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Egzersiz" Type="Self.Egzersiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Egzersiz">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HbA1c_Kullanicilar1">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="HbA1c" Type="Self.HbA1c" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HbA1c">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KanSekeri_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="KanSekeri" Type="Self.KanSekeri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KanSekeri">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Su_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Su" Type="Self.Su" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Su">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tansiyon_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Tansiyon" Type="Self.Tansiyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tansiyon">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VucutKitle_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="VucutKitle" Type="Self.VucutKitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VucutKitle">
+              <PropertyRef Name="KullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="applicationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Egzersiz" EntityType="Self.Egzersiz" />
+          <EntitySet Name="HbA1c" EntityType="Self.HbA1c" />
+          <EntitySet Name="KanSekeri" EntityType="Self.KanSekeri" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+          <EntitySet Name="Su" EntityType="Self.Su" />
+          <EntitySet Name="Tansiyon" EntityType="Self.Tansiyon" />
+          <EntitySet Name="VucutKitle" EntityType="Self.VucutKitle" />
+          <AssociationSet Name="FK_Egzersiz_Kullanicilar" Association="Self.FK_Egzersiz_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Egzersiz" EntitySet="Egzersiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HbA1c_Kullanicilar1" Association="Self.FK_HbA1c_Kullanicilar1">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="HbA1c" EntitySet="HbA1c" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KanSekeri_Kullanicilar" Association="Self.FK_KanSekeri_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="KanSekeri" EntitySet="KanSekeri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Su_Kullanicilar" Association="Self.FK_Su_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Su" EntitySet="Su" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tansiyon_Kullanicilar" Association="Self.FK_Tansiyon_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Tansiyon" EntitySet="Tansiyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VucutKitle_Kullanicilar" Association="Self.FK_VucutKitle_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="VucutKitle" EntitySet="VucutKitle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="applicationModelStoreContainer" CdmEntityContainer="applicationEntities">
+          <EntitySetMapping Name="Egzersiz">
+            <EntityTypeMapping TypeName="applicationModel.Egzersiz">
+              <MappingFragment StoreEntitySet="Egzersiz">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="EgzersizTipi" ColumnName="EgzersizTipi" />
+                <ScalarProperty Name="Sure" ColumnName="Sure" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HbA1c">
+            <EntityTypeMapping TypeName="applicationModel.HbA1c">
+              <MappingFragment StoreEntitySet="HbA1c">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="HbA1c1" ColumnName="HbA1c" />
+                <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KanSekeri">
+            <EntityTypeMapping TypeName="applicationModel.KanSekeri">
+              <MappingFragment StoreEntitySet="KanSekeri">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Zaman" ColumnName="Zaman" />
+                <ScalarProperty Name="KanSekeriDegeri" ColumnName="KanSekeriDegeri" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="applicationModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="DiyabetTipi" ColumnName="DiyabetTipi" />
+                <ScalarProperty Name="TeshisKonduguTarih" ColumnName="TeshisKonduguTarih" />
+                <ScalarProperty Name="il" ColumnName="il" />
+                <ScalarProperty Name="ilce" ColumnName="ilce" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Su">
+            <EntityTypeMapping TypeName="applicationModel.Su">
+              <MappingFragment StoreEntitySet="Su">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="GunlukToplamBardak" ColumnName="GunlukToplamBardak" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tansiyon">
+            <EntityTypeMapping TypeName="applicationModel.Tansiyon">
+              <MappingFragment StoreEntitySet="Tansiyon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="BuyukTansiyon" ColumnName="BuyukTansiyon" />
+                <ScalarProperty Name="KucukTansiyon" ColumnName="KucukTansiyon" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VucutKitle">
+            <EntityTypeMapping TypeName="applicationModel.VucutKitle">
+              <MappingFragment StoreEntitySet="VucutKitle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Boy" ColumnName="Boy" />
+                <ScalarProperty Name="Kilo" ColumnName="Kilo" />
+                <ScalarProperty Name="VucutKitleIndexi" ColumnName="VucutKitleIndexi" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

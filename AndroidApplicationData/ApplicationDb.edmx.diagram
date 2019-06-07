@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8b51556511f246dd8bbb489482abafa3" Name="Diagram1">
+        <EntityTypeShape EntityType="applicationModel.Egzersiz" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.HbA1c" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.KanSekeri" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.Kullanicilar" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.Su" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.Tansiyon" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="applicationModel.VucutKitle" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <AssociationConnector Association="applicationModel.FK_Egzersiz_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="applicationModel.FK_HbA1c_Kullanicilar1" ManuallyRouted="false" />
+        <AssociationConnector Association="applicationModel.FK_KanSekeri_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="applicationModel.FK_Su_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="applicationModel.FK_Tansiyon_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="applicationModel.FK_VucutKitle_Kullanicilar" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
