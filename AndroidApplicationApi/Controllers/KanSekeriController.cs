@@ -88,7 +88,7 @@ namespace AndroidApplicationApi.Controllers
       ResponseModel result = new ResponseModel();
       KanSekeriRepository repo = new KanSekeriRepository();
       List<KanSekeri> resultModel = new List<KanSekeri>();
-      KanSekeri kanSekeri = new KanSekeri();
+      
 
       try
       {
@@ -99,6 +99,7 @@ namespace AndroidApplicationApi.Controllers
         {
           foreach (var itemData in list)
           {
+            KanSekeri kanSekeri = new KanSekeri();
             kanSekeri.Id = itemData.Id;
             kanSekeri.KullaniciId = itemData.KullaniciId;
             kanSekeri.OlusturmaTarihi = itemData.OlusturmaTarihi;
